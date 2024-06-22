@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botão</title>
+</head>
+<body>
+    <button id="meuBotao">Clique aqui</button>
+
+    <script>
+        const ws = new WebSocket('ws://localhost:8080');
+
+        ws.onopen = function() {
+            console.log('Conectado ao servidor WebSocket');
+        };
+
+        ws.onmessage = function(event) {
+            console.log('Recebido do servidor:', event.data);
+        };
+
+        document.getElementById('meuBotao').addEventListener('click', function() {
+            ws.send('teste');
+        });
+    </script>
+</body>
+</html>
